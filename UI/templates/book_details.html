@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }}</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fb;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .book-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .book-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .book-details {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .book-details h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .book-details h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #16a085;
+            margin-top: 5px;
+            border-radius: 2px;
+        }
+
+        .book-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin: 0.8rem 0;
+        }
+
+        .book-details p strong {
+            color: #2c3e50;
+        }
+
+        .action-buttons {
+            margin-top: 1.5rem;
+        }
+
+        .back-link, .buy-link {
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link {
+            background-color: #ecf0f1;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
+        .back-link:hover {
+            background-color: #dfe6e9;
+        }
+
+        .buy-link {
+            background-color: #16a085;
+            color: #fff;
+            border: none;
+        }
+
+        .buy-link:hover {
+            background-color: #1abc9c;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .book-details h1 {
+                font-size: 1.8rem;
+            }
+
+            .book-image img {
+                max-height: 300px;
+            }
+
+            .action-buttons {
+                margin-top: 1rem;
+            }
+
+            .back-link, .buy-link {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Book Image Section -->
+        <div class="book-image">
+            <img src="{{ book.image }}" alt="Book cover of {{ book.title }}">
+        </div>
+        <!-- Book Details Section -->
+        <div class="book-details">
+            <h1>{{ book.title }}</h1>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Description:</strong></p>
+            <p>{{ book.description }}</p>
+            <div class="action-buttons">
+                <a href="/" class="back-link">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

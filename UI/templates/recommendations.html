@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Titles</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fb;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 0.5rem 0 1.5rem;
+            font-size: 1.5rem;
+            color: #555;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .book-card {
+            flex: 0 0 calc(25% - 1.5rem);
+            max-width: calc(25% - 1.5rem);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .book-card h2 {
+            font-size: 1.1rem;
+            margin: 0.8rem 0 0.5rem;
+            text-align: center;
+            color: #2c3e50;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .stats {
+            padding: 0.5rem 1rem;
+            text-align: center;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .stats p {
+            margin: 0.4rem 0;
+        }
+
+        .stats span {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .more-btn {
+            margin-top: auto;
+            padding: 0.7rem 1.2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #16a085;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .more-btn:hover {
+            background-color: #1abc9c;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-card {
+                flex: 0 0 calc(50% - 1.5rem);
+                max-width: calc(50% - 1.5rem);
+            }
+
+            .book-card img {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book-card {
+                flex: 0 0 calc(100% - 1rem);
+                max-width: calc(100% - 1rem);
+            }
+
+            .book-card img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Personalized Recommendations -->
+        {% if user_id %}
+        <h1>Welcome, {{ user_id }}</h1>
+        <h2>Here are your recommendations based on your preferences:</h2>
+        <div class="section-title">Recommended Books</div>
+        <div class="book-list">
+            {% for book in recommendations %}
+            <a href="/book/{{ book.title | urlencode }}" class="book-card">
+                <img src="{{ book.image }}" alt="Book cover of {{ book.title }}">
+                <h2>{{ book.title }}</h2>
+                <div class="stats">
+                    <p>Author: <span>{{ book.author }}</span></p>
+                    <p>Category: <span>{{ book.categories }}</span></p>
+                </div>
+            </a>
+            <button class="more-btn" onclick="location.href='{{ book.infoLink }}'">More Info</button>
+            {% endfor %}
+        </div>
+        {% if not recommendations %}
+        <p>No recommendations available.</p>
+        {% endif %}
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <!-- Similar Books Section -->
+        {% if book_id %}
+        <h1>Books Similar to {{ book_id }}</h1>
+        <h2>Explore titles that match your interest:</h2>
+        <div class="book-list">
+            {% for book in recommendations %}
+            <a href="/book/{{ book.title | urlencode }}" class="book-card">
+                <img src="{{ book.image }}" alt="Book cover of {{ book.title }}">
+                <h2>{{ book.title }}</h2>
+                <div class="stats">
+                    <p>Author: <span>{{ book.author }}</span></p>
+                    <p>Category: <span>{{ book.categories }}</span></p>
+                </div>
+            </a>
+            <button class="more-btn" onclick="location.href='{{ book.infoLink }}'">More Info</button>
+            {% endfor %}
+        </div>
+        {% if not recommendations %}
+        <p>No recommendations available for this book.</p>
+        {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
