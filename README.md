@@ -12,13 +12,13 @@ This book recommendation system is designed to handle large-scale data efficient
 To enhance the user experience, the system includes dynamic and interactive visualizations built with Plotly Dash, offering deep insights into user behavior, trends, and book popularity. The recommendations are deployed through a lightweight Flask web application, which serves real-time suggestions by loading pre-trained .pkl models—ensuring speed and scalability. With its modular architecture, the project integrates big data, machine learning, and visualization into a single, intuitive platform that provides personalized and engaging book recommendations.
 
 # Technologies Used
-  Apache Hadoop (HDFS, MapReduce)
-  Apache Spark (PySpark, MLlib)
-  Python (Pandas, NumPy, Scikit-learn)
-  Plotly, Dash
-  Flask
-  HTML/CSS
-  Jupyter Notebooks
+- Apache Hadoop (HDFS, MapReduce)
+- Apache Spark (PySpark, MLlib)
+- Python (Pandas, NumPy, Scikit-learn)
+- Plotly, Dash
+- Flask
+- HTML/CSS
+- Jupyter Notebooks
 
 # Dataset
 Kaggle Dataset: https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews
